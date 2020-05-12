@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 27 of /mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile:
+Missing input files for rule get_gradients:
+sub-CT01

@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Creating conda environment bspace.yml...
+Downloading and installing remote packages.
+Environment for bspace.yml created (location: .snakemake/conda/1725b91f)
+Using shell: /bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_gradients
+	1
+
+[Sun May 10 00:10:59 2020]
+rule get_gradients:
+    input: ../data/matrices/Right/sub-CT01_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat
+    output: R_gradient.txt
+    jobid: 0
+
+Activating conda environment: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f
+[Sun May 10 00:11:00 2020]
+Error in rule get_gradients:
+    jobid: 0
+    output: R_gradient.txt
+    conda-env: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f
+
+RuleException:
+CalledProcessError in line 32 of /mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile:
+Command 'source /home/ylu/anaconda3/bin/activate '/mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f'; set -euo pipefail;  /home/ylu/anaconda3/envs/snakemake/bin/python3.8 /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/scripts/tmpt8zn_oik.cortex_LR.py' returned non-zero exit status 1.
+  File "/mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile", line 32, in __rule_get_gradients
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/log/2020-05-10T001044.352297.snakemake.log

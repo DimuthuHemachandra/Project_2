@@ -1,0 +1,32 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_projections
+	1
+
+[Mon May 11 21:57:21 2020]
+rule get_projections:
+    input: gradients.csv
+    output: final_image.nii.gz, final_image_plot.png
+    jobid: 0
+
+Activating conda environment: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f
+[Mon May 11 23:47:09 2020]
+Error in rule get_projections:
+    jobid: 0
+    output: final_image.nii.gz, final_image_plot.png
+    conda-env: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f
+
+RuleException:
+CalledProcessError in line 39 of /mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile:
+Command 'source /home/ylu/anaconda3/bin/activate '/mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f'; set -euo pipefail;  /home/ylu/anaconda3/bin/python /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/scripts/tmps4cw5vee.project_gradients.py' returned non-zero exit status 1.
+  File "/mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile", line 39, in __rule_get_projections
+  File "/home/ylu/anaconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Removing output files of failed job get_projections since they might be corrupted:
+final_image.nii.gz
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/log/2020-05-11T215721.142591.snakemake.log

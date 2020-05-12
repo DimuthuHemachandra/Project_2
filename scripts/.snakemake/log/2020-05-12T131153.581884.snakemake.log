@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_projections
+	1
+
+[Tue May 12 13:11:53 2020]
+rule get_projections:
+    input: gradients.csv
+    output: final_image.nii.gz, final_image_plot.png
+    jobid: 0
+
+Activating conda environment: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/conda/1725b91f
+[Tue May 12 13:17:43 2020]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/log/2020-05-12T131153.581884.snakemake.log

@@ -1,0 +1,10 @@
+FileNotFoundError in line 9 of /mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile:
+[Errno 2] File participants.tsv does not exist: 'participants.tsv'
+  File "/mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile", line 9, in <module>
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/pandas/io/parsers.py", line 676, in parser_f
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/pandas/io/parsers.py", line 448, in _read
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/pandas/io/parsers.py", line 880, in __init__
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/pandas/io/parsers.py", line 1114, in _make_engine
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/pandas/io/parsers.py", line 1891, in __init__
+  File "pandas/_libs/parsers.pyx", line 374, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 674, in pandas._libs.parsers.TextReader._setup_parser_source

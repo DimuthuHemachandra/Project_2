@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_gradients
+	1
+
+[Sat May  9 23:30:45 2020]
+rule get_gradients:
+    input: ../data/matrices/Right/sub-CT01_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat
+    output: R_gradient.txt
+    jobid: 0
+
+[Sat May  9 23:30:45 2020]
+Error in rule get_gradients:
+    jobid: 0
+    output: R_gradient.txt
+
+RuleException:
+CalledProcessError in line 30 of /mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile:
+Command 'set -euo pipefail;  /home/ylu/anaconda3/envs/snakemake/bin/python3.8 /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/scripts/tmp3725g6h6.cortex_LR.py' returned non-zero exit status 1.
+  File "/mnt/hgfs/project/Project_2/VTASN_3T/codes/Snakefile", line 30, in __rule_get_gradients
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/hgfs/project/Project_2/VTASN_3T/codes/.snakemake/log/2020-05-09T233044.786724.snakemake.log

@@ -1,0 +1,7 @@
+Building DAG of jobs...
+WorkflowError:
+Conda env file does not exist: /mnt/hgfs/project/Project_2/VTASN_3T/codes/envs/bspace.yml
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/snakemake/deployment/conda.py", line 212, in create
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/snakemake/deployment/conda.py", line 95, in hash
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/snakemake/deployment/conda.py", line 80, in content
+  File "/home/ylu/anaconda3/envs/snakemake/lib/python3.8/site-packages/snakemake/deployment/conda.py", line 50, in content
