@@ -1,10 +1,10 @@
-from brainspace.datasets import load_conte69
-from brainspace.plotting import plot_hemispheres
-from brainspace.datasets import load_group_fc, load_parcellation
+#from brainspace.datasets import load_conte69
+#from brainspace.plotting import plot_hemispheres
+#from brainspace.datasets import load_group_fc, load_parcellation
 import matplotlib.pyplot as plt
-from brainspace.gradient import GradientMaps
+#from brainspace.gradient import GradientMaps
 import numpy as np
-from brainspace.utils.parcellation import map_to_labels
+#from brainspace.utils.parcellation import map_to_labels
 import scipy.io as sio
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -21,7 +21,7 @@ from scipy.io import loadmat
 subject = 'CT01'
 
 
-def get_projections(grad_file):
+def get_projections(grad_file, hcp_img):
 
 
 	grads = pd.read_csv(grad_file) 
@@ -31,13 +31,13 @@ def get_projections(grad_file):
 
 
 
-	img = load_img("../Data/T1s/HCPNATIVE/HCP-MMP1.nii.gz")
+	img = load_img(hcp_img)
 	data = (img.get_data())
 	x = np.shape(data)[0]
 	y = np.shape(data)[1]
 	z = np.shape(data)[2]
-	R_rois = np.loadtxt("R_coords.txt")
-	L_rois = np.loadtxt("L_coords.txt")
+	R_rois = np.loadtxt("cfg/R_coords.txt")
+	L_rois = np.loadtxt("cfg/L_coords.txt")
 	#rois = coords.values
 	R_vals = np.column_stack((R_gradient, R_rois))
 	L_vals = np.column_stack((L_gradient, L_rois))
@@ -78,7 +78,7 @@ def get_projections(grad_file):
 
 #get_projections(snakemake.input[0])
 
-get_projections(snakemake.input[0])
+get_projections(snakemake.input.gradient_csv, snakemake.input.hcp_img)
 
 
 

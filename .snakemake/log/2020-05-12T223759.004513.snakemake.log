@@ -1,0 +1,3 @@
+WorkflowError in line 6 of /scratch/dimuthu1/project2/Project_2/Snakefile:
+Config file config.yml not found.
+  File "/scratch/dimuthu1/project2/Project_2/Snakefile", line 6, in <module>

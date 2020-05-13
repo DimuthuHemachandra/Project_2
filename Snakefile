@@ -3,40 +3,43 @@ from os.path import join
 from glob import glob
 import pandas as pd
 
-configfile: 'config.yml'
+configfile: 'cfg/config.yml'
 
 
 #load participants.tsv file, and strip off sub- from participant_id column
-#df = pd.read_table(config['participants_tsv'])
-#subjects = df.participant_id.to_list() 
-#subjects = [ s.strip('sub-') for s in subjects ]
+df = pd.read_table(config['participants_tsv'])
+subjects = df.participant_id.to_list() 
+subjects = [ s.strip('sub-') for s in subjects ]
+
+print(subjects)
 
 
+wildcard_constraints:
+    subject="[a-zA-Z0-9]+"
 
 
-#wildcard_constraints:
-#    subject="[a-zA-Z0-9]+"
+diffparc_dir = config['diffparc_dir']
 
-
-
-#rule all:
-#    input: 
-#        clusters = expand('diffparc/clustering/group_space-{template}_seed-{seed}_hemi-{hemi}_method-spectralcosine_k-{k}_cluslabels.nii.gz',seed=seeds,hemi=hemis,template=config['template'],k=range(2,config['max_k']+1))
+rule all:
+    input: 
+        clusters = expand('../derivatives/analysis/gradients/sub-{subject}/gradient_image.nii.gz',subject=subjects)
 
 subjects='CT01'
 
-rule get_gradients:
-    input: "../data/matrices/Right/sub-CT01_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat"
-    output: gradient = '../results/gradients.csv'
-    conda: 'bspace.yml'
-    script: 'cortex_LR.py'
+rule get_gradients: 
+    input: Right = join(config['diffparc_dir'],config['Right_mat']),
+           Left = join(config['diffparc_dir'],config['Left_mat'])
+    output: gradient = '../derivatives/analysis/gradients/sub-{subject}/gradients.csv'
+    #conda: 'cfg/bspace.yml'
+    script: 'scripts/cortex_LR.py'
 
 rule get_projections:
-    input: "../results/gradients.csv"
-    output: projected_image = '../results/final_image.nii.gz',
-    		projected_plot = '../results/final_image_plot.png'
-    conda: 'bspace.yml'
-    script: 'project_gradients.py'
+    input: gradient_csv = "../derivatives/analysis/gradients/sub-{subject}/gradients.csv",
+           hcp_img = config['HCP_seg_nii']
+    output: projected_image = '../derivatives/analysis/gradients/sub-{subject}/gradient_image.nii.gz',
+    		projected_plot = '../derivatives/analysis/gradients/sub-{subject}/gradient_image_plot.png'
+    #conda: 'cfg/bspace.yml'
+    script: 'scripts/project_gradients.py'
 
 
 """

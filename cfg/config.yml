@@ -1,10 +1,14 @@
-prepdwi_dir: /project/6007967/akhanf/cfmm-bids/data/Khan/SNSX_7T_fresh/deriv/prepdwi_v0.0.12b
+diffparc_dir: /home/dimuthu1/scratch/project2/derivatives/diffparc_dev
 
 participants_tsv: participants.tsv
 
-#segmentations in subject native space:
-seed_seg_dir: /project/6007967/jclau/zona/segmentations/warped_seg
-seed_seg_nii: sub-{subject}/binary/sub-{subject}_exprater_{seed}_{hemi}_bin.nii.gz
+#HCP segmentations in subject native space:
+HCP_seg_nii: /home/dimuthu1/scratch/project2/derivatives/diffparc_dev/work/sub-{subject}/labels/t1/HCPNATIVE/HCP-MMP1.nii.gz
+
+Right_mat: matrices/Right/sub-{subject}_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat
+Left_mat: matrices/Left/sub-{subject}_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat
+
+#HCP_seg_nii: sub-{subject}/binary/sub-{subject}_exprater_{seed}_{hemi}_bin.nii.gz
 
 #ants transforms from template building - affine and warp are globbed
 ants_template_dir: /project/6007967/jclau/snsx32/templates/snsx32_v0.2/snsx32_v0.2_i09
@@ -28,8 +32,7 @@ hemis:
 #targets in subject native space
 targets_txt: cfg/hcp_mmp_sym_180.txt
 targets_seg_dir: /project/6007967/akhanf/cfmm-bids/data/Khan/SNSX_7T/deriv/freesurfer
-targets_seg_lh: sub-{subject}/tmp/lh.native.hcp-mmp.nii.gz
-targets_seg_rh: sub-{subject}/tmp/rh.native.hcp-mmp.nii.gz
+
 
 
 #fsl 6.0.1, ants; also:  mri_convert (from freesurfer) reg_resample (niftyreg) 

@@ -1,0 +1,3 @@
+ModuleNotFoundError in line 4 of /scratch/dimuthu1/project2/Project_2/Snakefile:
+No module named 'pandas'
+  File "/scratch/dimuthu1/project2/Project_2/Snakefile", line 4, in <module>

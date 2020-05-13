@@ -1,10 +1,10 @@
-from brainspace.datasets import load_conte69
-from brainspace.plotting import plot_hemispheres
-from brainspace.datasets import load_group_fc, load_parcellation
+#from brainspace.datasets import load_conte69
+#from brainspace.plotting import plot_hemispheres
+#from brainspace.datasets import load_group_fc, load_parcellation
 import matplotlib.pyplot as plt
-from brainspace.gradient import GradientMaps
+#from brainspace.gradient import GradientMaps
 import numpy as np
-from brainspace.utils.parcellation import map_to_labels
+#from brainspace.utils.parcellation import map_to_labels
 import scipy.io as sio
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
@@ -57,16 +57,17 @@ def get_gradients(matrix, gradient_n):
 	return grad
 
 
-def get_diffusion_maps(subject, componanat):
+def get_diffusion_maps(path_to_mat_R,path_to_mat_L, componanat):
 	#Calculate the diffusion gradients for LEft and Right sides.
 	#subject: string of the subject ID
 	#componanat: int (1-5). Can change the upper limit (5) by editing get_gradinets().
 
-	Right_matrix = glob.glob(subject) #finding all the mat files
+	Right_matrix = glob.glob(path_to_mat_R) #finding all the mat files
+	Left_matrix = glob.glob(path_to_mat_L)
 	#Left_matrix = glob.glob("../data/matrices/Left/"+'*'+subject+'*'+'.mat') #finding all the mat files
 
 	R_matrix = get_df(Right_matrix[0])
-	L_matrix= get_df(Right_matrix[0])
+	L_matrix= get_df(Left_matrix[0])
 
 	left,true_right = split_df(R_matrix, 180)
 	true_left,right = split_df(L_matrix, 180)
@@ -86,7 +87,7 @@ def get_diffusion_maps(subject, componanat):
 
 
 
-grad_df = get_diffusion_maps(snakemake.input[0],1)
+grad_df = get_diffusion_maps(snakemake.input.Right,snakemake.input.Left,1)
 
 grad_df.to_csv(snakemake.output.gradient, index=False)
 
