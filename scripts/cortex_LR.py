@@ -17,7 +17,18 @@ from mapalign.embed import DiffusionMapEmbedding
 
 from scipy.io import loadmat
 
-subject = 'CT01'
+#subject = 'CT01'
+
+def make_out_dir(out_path):
+
+	#Make subdirectories to save files
+	filename = out_path
+	if not os.path.exists(os.path.dirname(filename)):
+	    try:
+	        os.makedirs(os.path.dirname(filename))
+	    except OSError as exc: # Guard against race condition
+	        if exc.errno != errno.EEXIST:
+	          raise
 
 
 def get_df(mat_path):
@@ -88,6 +99,8 @@ def get_diffusion_maps(path_to_mat_R,path_to_mat_L, componanat):
 
 
 grad_df = get_diffusion_maps(snakemake.input.Right,snakemake.input.Left,1)
+
+make_out_dir(snakemake.input.gradient_path)
 
 grad_df.to_csv(snakemake.output.gradient, index=False)
 
