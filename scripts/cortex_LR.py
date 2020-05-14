@@ -51,7 +51,7 @@ def split_df(df,headsize):
 	return left, right
 
 
-def get_gradients(matrix, gradient_n):
+def get_gradients(matrix):
 	#Calculating the diffusion gradients
 	#matrix: nxm matrix
 	#gradient_n: gradient componanat (int 1 to n). I have set n = 5 here.
@@ -63,9 +63,9 @@ def get_gradients(matrix, gradient_n):
 
 	de = DiffusionMapEmbedding(alpha=0.5, diffusion_time=10, affinity='markov', n_components=5).fit_transform(sim_matrix.copy())
 
-	grad=de[:,gradient_n-1] #-1 to fix for the index
+	#grad=de[:,gradient_n-1] #-1 to fix for the index
 
-	return grad
+	return de
 
 
 def get_diffusion_maps(path_to_mat_R,path_to_mat_L, componanat):
@@ -86,13 +86,15 @@ def get_diffusion_maps(path_to_mat_R,path_to_mat_L, componanat):
 	#plt.imshow(true_right*1000,aspect="auto")
 	#plt.show()
 
-	R_gradient = get_gradients(true_right, componanat)
-	L_gradient = get_gradients(true_left, componanat)
+	R_gradient = get_gradients(true_right)
+	L_gradient = get_gradients(true_left)
 
 	print("Right gradient is processed for shape:",np.shape(R_gradient))
 	#print("Left gradient is processed for "+subject+" with shape:",np.shape(L_gradient))
 
-	grad_df = pd.DataFrame({'R_gradient': R_gradient, 'L_gradient': L_gradient})
+	grad_df = pd.DataFrame({'R_grad_1': R_gradient[:,0], 'R_grad_2': R_gradient[:,1],
+			'R_grad_3': R_gradient[:,2], 'R_grad_4': R_gradient[:,3], 'L_grad_1': L_gradient[:,0],
+			 'L_grad_2': L_gradient[:,1], 'L_grad_3': L_gradient[:,2], 'L_grad_4': L_gradient[:,3]})
 
 	return grad_df
 

@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	get_projections
+	1
+
+[Wed May 13 16:35:59 2020]
+rule get_projections:
+    input: ../derivatives/analysis/gradients/sub-CT16/gradients.csv, /home/dimuthu1/scratch/project2/derivatives/diffparc_dev/work/sub-CT16/labels/t1/HCPNATIVE/HCP-MMP1.nii.gz
+    output: ../derivatives/analysis/gradients/sub-CT16/gradient_image.nii.gz, ../derivatives/analysis/gradients/sub-CT16/gradient_image_plot.png
+    jobid: 0
+    wildcards: subject=CT16
+    resources: mem_mb=4000
+
+/scratch/dimuthu1/project2/Project_2/scripts/project_gradients.py:39: DeprecationWarning: get_data() is deprecated in favor of get_fdata(), which has a more predictable return type. To obtain get_data() behavior going forward, use numpy.asanyarray(img.dataobj).
+
+* deprecated from version: 3.0
+* Will raise <class 'nibabel.deprecator.ExpiredDeprecationError'> as of version: 5.0
+  R_rois = np.loadtxt("cfg/R_coords.txt")
+[Wed May 13 16:42:54 2020]
+Finished job 0.
+1 of 1 steps (100%) done
+['CT01', 'CT02', 'CT03', 'CT04', 'CT06', 'CT08', 'CT10', 'CT11', 'CT12', 'CT15', 'CT16', 'CT18', 'CT19', 'CT20', 'CT22', 'PD01', 'PD02', 'PD03', 'PD04', 'PD06', 'PD07', 'PD08', 'PD10', 'PD11', 'PD12', 'PD18', 'PD19', 'PD21']

@@ -17,27 +17,33 @@ print(subjects)
 wildcard_constraints:
     subject="[a-zA-Z0-9]+"
 
+componants=['1','2','3','4']
 
 diffparc_dir = config['diffparc_dir']
 
 rule all:
     input: 
-        clusters = expand('../derivatives/analysis/gradients/sub-{subject}/gradient_image.nii.gz',subject=subjects)
+        clusters = expand('../derivatives/analysis/gradients/sub-{subject}/gradient_{componant}_image.nii.gz',subject=subjects, componant=componants)
 
-subjects='CT01'
+#subjects='CT01'
 
 rule get_gradients: 
     input: Right = join(config['diffparc_dir'],config['Right_mat']),
-           Left = join(config['diffparc_dir'],config['Left_mat'])
-    output: gradient = '../derivatives/analysis/gradients/sub-{subject}/gradients.csv'
+           Left = join(config['diffparc_dir'],config['Left_mat']),
+           gradient_path = '../derivatives/analysis/gradients/'
+    output: gradient = '../derivatives/analysis/gradients/sub-{subject}/gradients.csv'    
     #conda: 'cfg/bspace.yml'
     script: 'scripts/cortex_LR.py'
+
+
 
 rule get_projections:
     input: gradient_csv = "../derivatives/analysis/gradients/sub-{subject}/gradients.csv",
            hcp_img = config['HCP_seg_nii']
-    output: projected_image = '../derivatives/analysis/gradients/sub-{subject}/gradient_image.nii.gz',
-    		projected_plot = '../derivatives/analysis/gradients/sub-{subject}/gradient_image_plot.png'
+    params: comp = '{componant}'
+
+    output: projected_image = '../derivatives/analysis/gradients/sub-{subject}/gradient_{componant}_image.nii.gz',
+    		projected_plot = '../derivatives/analysis/gradients/sub-{subject}/gradient_{componant}_image_plot.png'
     #conda: 'cfg/bspace.yml'
     script: 'scripts/project_gradients.py'
 

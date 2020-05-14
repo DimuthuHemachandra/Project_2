@@ -1,0 +1,30 @@
+Building DAG of jobs...
+Using shell: /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	get_projections
+	2
+
+[Wed May 13 22:15:26 2020]
+rule get_projections:
+    input: ../derivatives/analysis/gradients/sub-CT01/gradients.csv, /home/dimuthu1/scratch/project2/derivatives/diffparc_dev/work/sub-CT01/labels/t1/HCPNATIVE/HCP-MMP1.nii.gz
+    output: ../derivatives/analysis/gradients/sub-CT01/gradient_image.nii.gz, ../derivatives/analysis/gradients/sub-CT01/gradient_image_plot.png
+    jobid: 1
+    wildcards: subject=CT01
+
+[Wed May 13 22:15:30 2020]
+Error in rule get_projections:
+    jobid: 1
+    output: ../derivatives/analysis/gradients/sub-CT01/gradient_image.nii.gz, ../derivatives/analysis/gradients/sub-CT01/gradient_image_plot.png
+
+RuleException:
+CalledProcessError in line 43 of /scratch/dimuthu1/project2/Project_2/Snakefile:
+Command 'set -euo pipefail;  /home/dimuthu1/py3/bin/python /scratch/dimuthu1/project2/Project_2/.snakemake/scripts/tmpg4w0g_1p.project_gradients.py' returned non-zero exit status 1.
+  File "/scratch/dimuthu1/project2/Project_2/Snakefile", line 43, in __rule_get_projections
+  File "/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/python/3.7.0/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /scratch/dimuthu1/project2/Project_2/.snakemake/log/2020-05-13T221525.906980.snakemake.log
