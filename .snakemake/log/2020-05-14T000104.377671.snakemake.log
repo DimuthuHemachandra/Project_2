@@ -1,3 +1,0 @@
-WildcardError in line 25 of /scratch/dimuthu1/project2/Project_2/Snakefile:
-No values given for wildcard 'componant'.
-  File "/scratch/dimuthu1/project2/Project_2/Snakefile", line 25, in <module>

@@ -1,3 +1,0 @@
-KeyError in line 28 of /scratch/dimuthu1/project2/Project_2/Snakefile:
-'diffpac_dir'
-  File "/scratch/dimuthu1/project2/Project_2/Snakefile", line 28, in <module>

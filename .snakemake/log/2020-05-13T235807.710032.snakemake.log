@@ -1,3 +1,0 @@
-WildcardError in line 43 of /scratch/dimuthu1/project2/Project_2/Snakefile:
-No values given for wildcard 'subject'.
-  File "/scratch/dimuthu1/project2/Project_2/Snakefile", line 43, in <module>

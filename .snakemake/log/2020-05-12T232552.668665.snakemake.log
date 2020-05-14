@@ -1,7 +1,0 @@
-Building DAG of jobs...
-CreateCondaEnvironmentException:
-The 'conda' command is not available in the shell /cvmfs/soft.computecanada.ca/nix/var/nix/profiles/16.09/bin/bash that will be used by Snakemake. You have to ensure that it is in your PATH, e.g., first activating the conda base environment with `conda activate base`.
-  File "/project/6007967/akhanf/opt/virtualenvs/snakemake/lib/python3.7/site-packages/snakemake/deployment/conda.py", line 242, in create
-  File "/project/6007967/akhanf/opt/virtualenvs/snakemake/lib/python3.7/site-packages/snakemake/deployment/conda.py", line 363, in __new__
-  File "/project/6007967/akhanf/opt/virtualenvs/snakemake/lib/python3.7/site-packages/snakemake/deployment/conda.py", line 376, in __init__
-  File "/project/6007967/akhanf/opt/virtualenvs/snakemake/lib/python3.7/site-packages/snakemake/deployment/conda.py", line 416, in _check

@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 40 of /scratch/dimuthu1/project2/Project_2/Snakefile:
-Missing input files for rule get_projections:
-1
