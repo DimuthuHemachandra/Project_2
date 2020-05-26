@@ -8,6 +8,12 @@ HCP_seg_nii: /home/dimuthu1/scratch/project2/derivatives/diffparc_dev/work/sub-{
 Right_mat: matrices/Right/sub-{subject}_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat
 Left_mat: matrices/Left/sub-{subject}_space-T1w_res-2_seed-CIT168_striatum-hcpmmp_connMap.mat
 
+
+stat_path_lh: /home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_{subject}/parce/out_put/{subject}/tables/table_lh.txt
+
+stat_path_rh: /home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_{subject}/parce/out_put/{subject}/tables/table_rh.txt
+
+
 #HCP_seg_nii: sub-{subject}/binary/sub-{subject}_exprater_{seed}_{hemi}_bin.nii.gz
 
 #ants transforms from template building - affine and warp are globbed

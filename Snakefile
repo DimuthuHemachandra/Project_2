@@ -23,7 +23,9 @@ diffparc_dir = config['diffparc_dir']
 
 rule all:
     input: 
-        clusters = expand('../derivatives/analysis/gradients/sub-{subject}/gradient_{componant}_image.nii.gz',subject=subjects, componant=componants)
+        clusters = expand('../derivatives/analysis/gradients/sub-{subject}/gradient_{componant}_image.nii.gz',subject=subjects, componant=componants),
+        files_lh = expand('../derivatives/analysis/hcp_stat/sub-{subject}/{subject}_hcp_stat_lh.csv',subject=subjects),
+        files_rh = expand('../derivatives/analysis/hcp_stat/sub-{subject}/{subject}_hcp_stat_rh.csv',subject=subjects)
 
 #subjects='CT01'
 
@@ -46,6 +48,21 @@ rule get_projections:
     		projected_plot = '../derivatives/analysis/gradients/sub-{subject}/gradient_{componant}_image_plot.png'
     #conda: 'cfg/bspace.yml'
     script: 'scripts/project_gradients.py'
+
+
+rule get_stat:
+    input: stat_lh = config['stat_path_lh'],
+           stat_rh = config['stat_path_rh'],
+           
+
+    params: stat_out_path = '../derivatives/analysis/hcp_stat/{subject}'
+
+    output: stat_csv_lh = '../derivatives/analysis/hcp_stat/sub-{subject}/{subject}_hcp_stat_lh.csv',
+    		stat_csv_rh = '../derivatives/analysis/hcp_stat/sub-{subject}/{subject}_hcp_stat_rh.csv'
+
+    #conda: 'cfg/bspace.yml'
+    script: 'scripts/hcp_stat.py'
+
 
 
 """
