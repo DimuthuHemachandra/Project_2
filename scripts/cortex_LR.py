@@ -2,7 +2,7 @@
 #from brainspace.plotting import plot_hemispheres
 #from brainspace.datasets import load_group_fc, load_parcellation
 import matplotlib.pyplot as plt
-#from brainspace.gradient import GradientMaps
+from brainspace.gradient import GradientMaps
 import numpy as np
 #from brainspace.utils.parcellation import map_to_labels
 import scipy.io as sio
@@ -57,15 +57,21 @@ def get_gradients(matrix):
 	#gradient_n: gradient componanat (int 1 to n). I have set n = 5 here.
 
 	sim_matrix = cosine_similarity(matrix)  #Calculating the cosine similarity matrix
+	#sim_matrix = matrix.to_numpy()
 
 	#plt.imshow(sim_matrix)
 	#plt.show()
 
-	de = DiffusionMapEmbedding(alpha=0.5, diffusion_time=10, affinity='markov', n_components=5).fit_transform(sim_matrix.copy())
+	de = DiffusionMapEmbedding(alpha=0.5, diffusion_time=1, affinity='markov', n_components=5).fit_transform(sim_matrix.copy())
 
+	#de = GradientMaps(alignment=None, approach='dm', kernel = None , n_components=5, random_state=0)
+	#de.fit(sim_matrix.copy())
 	#grad=de[:,gradient_n-1] #-1 to fix for the index
+	#print(de.gradients_())
 
+	#return de.gradients_	
 	return de
+
 
 
 def get_diffusion_maps(path_to_mat_R,path_to_mat_L, componanat):
@@ -88,6 +94,9 @@ def get_diffusion_maps(path_to_mat_R,path_to_mat_L, componanat):
 
 	R_gradient = get_gradients(true_right)
 	L_gradient = get_gradients(true_left)
+
+	np.save(snakemake.output.R_emb, R_gradient)
+	np.save(snakemake.output.L_emb, L_gradient)
 
 	print("Right gradient is processed for shape:",np.shape(R_gradient))
 	#print("Left gradient is processed for "+subject+" with shape:",np.shape(L_gradient))

@@ -14,6 +14,11 @@ stat_path_lh: /home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflo
 stat_path_rh: /home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_{subject}/parce/out_put/{subject}/tables/table_rh.txt
 
 
+surf_label_lh: /home/dimuthu1/scratch/project2/Project_2/cfg/surface_labels/mmpL.func.gii
+surf_label_rh: /home/dimuthu1/scratch/project2/Project_2/cfg/surface_labels/mmpR.func.gii
+
+HCP_360_labels: /home/dimuthu1/scratch/project2/Project_2/cfg/LUT_HCP-MMP1.txt
+
 #HCP_seg_nii: sub-{subject}/binary/sub-{subject}_exprater_{seed}_{hemi}_bin.nii.gz
 
 #ants transforms from template building - affine and warp are globbed

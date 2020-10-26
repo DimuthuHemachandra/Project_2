@@ -8,60 +8,6 @@ import seaborn as sns
 
 sns.set()
 
-
-#path_lh ='/home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_*/parce/out_put/*/tables/table_lh.txt'
-
-#path_rh ='/home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_*/parce/out_put/*/tables/table_rh.txt'
-
-hcp_lh = '../../derivatives/analysis/hcp_stat/sub-CT01/CT01_hcp_stat_lh.csv'
-gradient = '../../derivatives/analysis/gradients/sub-CT01/gradients.csv'
-
-
-
-
-grads = pd.read_csv(gradient)
-stats_lh = pd.read_csv(hcp_lh) 
-
-stats_lh = stats_lh.drop(['Num_of_vertices','thickness_mm', 'ROI_name'], axis = 1) 
-
-gradient_lh = grads[['L_grad_1','L_grad_2','L_grad_3','L_grad_4']]
-
-#print(stats_lh['thickness_mm'])
-
-"""splitted_vals = [i.split(' ') for i in stats_lh['thickness_mm'].values]
-thickness = np.array(splitted_vals)[:,0]
-error = np.array(splitted_vals)[:,1]
-
-#Note: Not using error column atm. Will add the error bars later.
-
-thick_df = pd.DataFrame({'thickness': thickness})
-
-stats_lh['thickness_mm'] = thick_df['thickness']   #.astype(float)
-
-header = list(stats_lh)"""
-
-#for cols in header:
-
-#	stats_lh['thickness_mm'] = thick_df['thickness'].astype(float)
-
-
-gradient_lh = gradient_lh.drop([0]).reset_index(drop=True)
-
-
-combined_lh = pd.concat([stats_lh, gradient_lh], axis=1, sort=False)
-
-
-
-sns_plot = sns.pairplot(combined_lh)
-plt.show()
-sns_plot.savefig("all_CT.png")
-
-#sns_plot_1 = sns.jointplot("L_grad_2", "thickness", data=combined_lh, kind="reg", truncate=False)
-#plt.show()
-#sns_plot_1.savefig("thick_vs_g2_PD.png")
-
-#plt.show()
-
 def make_out_dir(out_path):
 
 	#Make subdirectories to save files
@@ -74,6 +20,51 @@ def make_out_dir(out_path):
 	          raise
 
 #make_out_dir(snakemake.params.stat_out_path)
+
+
+#path_lh ='/home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_*/parce/out_put/*/tables/table_lh.txt'
+
+#path_rh ='/home/dimuthu1/scratch/project2/derivatives/hcp_360/work/MyWorkflow/_sub_id_*/parce/out_put/*/tables/table_rh.txt'
+
+hcp_lh = snakemake.input.hcp_lh   #'../../derivatives/analysis/hcp_stat/sub-CT01/CT01_hcp_stat_lh.csv'
+hcp_rh = snakemake.input.hcp_rh  #'../../derivatives/analysis/hcp_stat/sub-CT01/CT01_hcp_stat_rh.csv'
+gradient = snakemake.input.gradient #'../../derivatives/analysis/gradients/sub-CT01/gradients.csv'
+
+grads = pd.read_csv(gradient)
+gradient_lh = grads[['L_grad_1','L_grad_2','L_grad_3','L_grad_4']]
+gradient_rh = grads[['R_grad_1','R_grad_2','R_grad_3','R_grad_4']]
+
+stats_lh = pd.read_csv(hcp_lh) 
+stats_rh = pd.read_csv(hcp_rh) 
+
+stats_lh = stats_lh.drop(['Num_of_vertices','thickness_error', 'ROI_name'], axis = 1) 
+stats_rh = stats_rh.drop(['Num_of_vertices','thickness_error', 'ROI_name'], axis = 1) 
+
+
+gradient_lh = gradient_lh.drop([0]).reset_index(drop=True)
+gradient_rh = gradient_rh.drop([0]).reset_index(drop=True)
+
+
+combined_lh = pd.concat([stats_lh, gradient_lh], axis=1, sort=False)
+combined_rh = pd.concat([stats_rh, gradient_rh], axis=1, sort=False)
+
+
+
+sns_plot = sns.pairplot(combined_lh)
+plt.show()
+sns_plot.savefig(snakemake.output.lh_stat_plots)
+
+sns_plot = sns.pairplot(combined_rh)
+plt.show()
+sns_plot.savefig(snakemake.output.rh_stat_plots)
+
+#sns_plot_1 = sns.jointplot("L_grad_2", "thickness", data=combined_lh, kind="reg", truncate=False)
+#plt.show()
+#sns_plot_1.savefig("thick_vs_g2_PD.png")
+
+#plt.show()
+
+
 
 
 
